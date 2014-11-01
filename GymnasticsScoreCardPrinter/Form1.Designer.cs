@@ -43,6 +43,8 @@
             this.usagFilter = new System.Windows.Forms.TextBox();
             this.proScoreNumberFilter = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.version = new System.Windows.Forms.Label();
+            this.includeIncomplete = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // inputFilePath
@@ -68,7 +70,8 @@
             // 
             // merge
             // 
-            this.merge.Location = new System.Drawing.Point(282, 226);
+            this.merge.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.merge.Location = new System.Drawing.Point(593, 256);
             this.merge.Name = "merge";
             this.merge.Size = new System.Drawing.Size(75, 23);
             this.merge.TabIndex = 2;
@@ -188,11 +191,32 @@
             this.label5.TabIndex = 11;
             this.label5.Text = "ProScore Filter";
             // 
+            // version
+            // 
+            this.version.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.version.AutoSize = true;
+            this.version.Location = new System.Drawing.Point(1, 359);
+            this.version.Name = "version";
+            this.version.Size = new System.Drawing.Size(40, 13);
+            this.version.TabIndex = 13;
+            this.version.Text = "0.0.0.0";
+            // 
+            // includeIncomplete
+            // 
+            this.includeIncomplete.Location = new System.Drawing.Point(30, 317);
+            this.includeIncomplete.Name = "includeIncomplete";
+            this.includeIncomplete.Size = new System.Drawing.Size(129, 24);
+            this.includeIncomplete.TabIndex = 14;
+            this.includeIncomplete.Text = "Include Incomplete?";
+            this.includeIncomplete.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(680, 261);
+            this.ClientSize = new System.Drawing.Size(680, 381);
+            this.Controls.Add(this.includeIncomplete);
+            this.Controls.Add(this.version);
             this.Controls.Add(this.proScoreNumberFilter);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.usagFilter);
@@ -208,6 +232,7 @@
             this.Controls.Add(this.inputFilePath);
             this.Name = "Form1";
             this.Text = "Print Score Cards";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -230,6 +255,8 @@
         private System.Windows.Forms.TextBox usagFilter;
         private System.Windows.Forms.TextBox proScoreNumberFilter;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label version;
+        private System.Windows.Forms.CheckBox includeIncomplete;
     }
 }
 

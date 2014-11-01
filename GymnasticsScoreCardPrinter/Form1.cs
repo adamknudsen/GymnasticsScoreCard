@@ -73,7 +73,7 @@ namespace GymnasticsScoreCardPrinter
         {
             string uniqueFileName = "FilteredSession_" + DateTime.Now.ToString("yyyyMMddhhmmss") + ".csv";
             string filteredInput = Path.Combine(Environment.CurrentDirectory, uniqueFileName);
-            var proScoreFilter = new ProScoreFilter.FileFilter(inputFilePath.Text, filteredInput);
+            var proScoreFilter = new ProScoreFilter.FileFilter(inputFilePath.Text, filteredInput, Properties.Settings.Default.IncludeScratched, includeIncomplete.Checked);
 
             if(!string.IsNullOrWhiteSpace(sessionFilter.Text) && proScoreFilter.FilterForSession(sessionFilter.Text))
                 return filteredInput;
@@ -119,6 +119,12 @@ namespace GymnasticsScoreCardPrinter
                 usagFilter.Text = string.Empty;
                 sessionFilter.Text = string.Empty;
             }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            version.Text = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            includeIncomplete.Checked = Properties.Settings.Default.IncludeIncompleteDefault;
         }
     }
 }
