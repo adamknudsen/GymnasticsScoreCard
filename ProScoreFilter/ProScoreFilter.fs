@@ -13,24 +13,17 @@ type FileFilter(inputFile: string, outputFile: string, includeScratched: bool, i
     member this.FilterForSession session : bool = 
         let gymnasts = Gymnasts.Load(this.InputFile)
         let sessionFiltered = gymnasts.Filter(fun x -> x.Session = session)
-        let scratchFiltered = sessionFiltered.Filter(fun g -> (not g.Scratched || true))
+        let scratchFiltered = sessionFiltered.Filter(fun g -> (not g.Scratched || includeScratched))
         
-//        if (IncludeNotDone) then
-//            let filtered = scratchFiltered.Filter( fun g -> 
-//                not (Double.IsNaN g.E1S1) && not (Double.IsNaN g.E1S2)
-//                && not (Double.IsNaN g.E2S1) && not (Double.IsNaN g.E2S2)
-//                && not (Double.IsNaN g.E3S1) && not (Double.IsNaN g.E3S2)
-//                && not (Double.IsNaN g.E4S1) && not (Double.IsNaN g.E4S2)
-//            )
-//        else 
-//            let filtered = scratchFiltered
-
-        let filtered = scratchFiltered.Filter( fun g -> 
+        let filtered = 
+            if (includeNotDone) then scratchFiltered
+            else scratchFiltered.Filter( fun g -> 
                 not (Double.IsNaN g.E1S1) && not (Double.IsNaN g.E1S2)
                 && not (Double.IsNaN g.E2S1) && not (Double.IsNaN g.E2S2)
                 && not (Double.IsNaN g.E3S1) && not (Double.IsNaN g.E3S2)
                 && not (Double.IsNaN g.E4S1) && not (Double.IsNaN g.E4S2)
             )
+
         let isEmpty = filtered.Rows |> Seq.isEmpty
         if not (isEmpty) then
             filtered.Save(this.OutputFile)
