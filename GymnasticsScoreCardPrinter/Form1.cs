@@ -16,8 +16,6 @@ namespace GymnasticsScoreCardPrinter
         public Form1()
         {
             InitializeComponent();
-            inputFilePath.Text = Path.Combine(Environment.CurrentDirectory, "SampleSession.csv");
-            templateFilePath.Text = Path.Combine(Environment.CurrentDirectory, "HugKissScoreCard.doc");
         }
 
         private void browseInput_Click(object sender, EventArgs e)
@@ -59,12 +57,16 @@ namespace GymnasticsScoreCardPrinter
                     document.MailMerge.Execute(showTroubleshootingOnError);
 
                     document.Close(false);
+                    if (MessageBox.Show("Add Scores to Saved Meet File?", "Save Scores?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                    {
+                        SaveScores(filteredInputPath);
+                    }
                 }
             
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message + " " + ex.StackTrace);
+                MessageBox.Show(ex.Message + " " + ex.StackTrace, "Likely Scores were not saved", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
         }
@@ -73,7 +75,7 @@ namespace GymnasticsScoreCardPrinter
         {
             string uniqueFileName = "FilteredSession_" + DateTime.Now.ToString("yyyyMMddhhmmss") + ".csv";
             string filteredInput = Path.Combine(Environment.CurrentDirectory, uniqueFileName);
-            var proScoreFilter = new ProScoreFilter.FileFilter(inputFilePath.Text, filteredInput, Properties.Settings.Default.IncludeScratched, includeIncomplete.Checked);
+            var proScoreFilter = new ProScoreFilter.FileFilter(inputFilePath.Text, filteredInput, savedFilePath.Text, Properties.Settings.Default.IncludeScratched, includeIncomplete.Checked);
 
             if(!string.IsNullOrWhiteSpace(sessionFilter.Text) && proScoreFilter.FilterForSession(sessionFilter.Text))
                 return filteredInput;
@@ -91,6 +93,26 @@ namespace GymnasticsScoreCardPrinter
             }
             
             return null;
+
+        }
+
+        private void SaveScores(string pathToNewResults)
+        {
+            if (!File.Exists(savedFilePath.Text))
+            {
+                File.Copy(pathToNewResults, savedFilePath.Text);
+            }
+            else
+            {
+                StringBuilder sb = new StringBuilder();
+                using (StreamReader sr = new StreamReader(pathToNewResults))
+                {
+                    sr.ReadLine(); // Discard header line
+                    while (!sr.EndOfStream)
+                        sb.AppendLine(sr.ReadLine());
+                }
+                File.AppendAllText(savedFilePath.Text, sb.ToString());
+            }
 
         }
 
@@ -124,7 +146,58 @@ namespace GymnasticsScoreCardPrinter
         private void Form1_Load(object sender, EventArgs e)
         {
             version.Text = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            SetDefaults();
+        }
+
+        private void defaults_Click(object sender, EventArgs e)
+        {
+            SetDefaults();
+        }
+
+        private void SetDefaults()
+        {
+            var workingDirectory = Properties.Settings.Default.workingDirectoryPath;
+            if (string.IsNullOrWhiteSpace(workingDirectory)) workingDirectory = Environment.CurrentDirectory;
+
+            inputFilePath.Text = Path.Combine(workingDirectory, Properties.Settings.Default.inputFileDefault);
+            templateFilePath.Text = Path.Combine(workingDirectory, Properties.Settings.Default.scoreCardTemplateDefault);
             includeIncomplete.Checked = Properties.Settings.Default.IncludeIncompleteDefault;
+
+            string existingMeetFilePath;
+            if (TryFindExistingMeetFile(workingDirectory, out existingMeetFilePath))
+            {
+                savedFilePath.Text = existingMeetFilePath;
+            }
+            else
+            {
+                savedFilePath.Text = GenerateNewMeetFilePath(workingDirectory);
+            }
+        }
+
+        private string GenerateNewMeetFilePath(string workingDirectory)
+        {
+            var savedFilePathFormat = Path.Combine(workingDirectory, Properties.Settings.Default.savedFileDefaultFormat);
+            return string.Format(savedFilePathFormat, DateTime.Now.ToString(Properties.Settings.Default.savedFileDateFormat));
+        }
+
+        private bool TryFindExistingMeetFile(string workingDirectory, out string existingMeetFilePath)
+        {
+            var potentialFilePathFormat = Path.Combine( workingDirectory, Properties.Settings.Default.savedFileDefaultFormat);
+
+            for (int i = 0; i <= Properties.Settings.Default.daysBackToCheckForSavedFile; i++)
+			{
+			    var potentialFilePath = string.Format(potentialFilePathFormat, 
+                                                      DateTime.Now.AddDays(-i).ToString(Properties.Settings.Default.savedFileDateFormat));
+
+                if (File.Exists(potentialFilePath))
+                {
+                    existingMeetFilePath = potentialFilePath;
+                    return true;
+                }
+            }
+            existingMeetFilePath = null;
+            return false;
+            
         }
     }
 }

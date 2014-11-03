@@ -40,5 +40,59 @@ namespace GymnasticsScoreCardPrinter.Properties {
                 return ((bool)(this["IncludeIncompleteDefault"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("HugKissScoreCard.doc")]
+        public string scoreCardTemplateDefault {
+            get {
+                return ((string)(this["scoreCardTemplateDefault"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("SampleSession.csv")]
+        public string inputFileDefault {
+            get {
+                return ((string)(this["inputFileDefault"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string workingDirectoryPath {
+            get {
+                return ((string)(this["workingDirectoryPath"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Meet_{0}_SavedFile.csv")]
+        public string savedFileDefaultFormat {
+            get {
+                return ((string)(this["savedFileDefaultFormat"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("yyyyMMdd")]
+        public string savedFileDateFormat {
+            get {
+                return ((string)(this["savedFileDateFormat"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        public int daysBackToCheckForSavedFile {
+            get {
+                return ((int)(this["daysBackToCheckForSavedFile"]));
+            }
+        }
     }
 }

@@ -8,5 +8,23 @@
     <Setting Name="IncludeIncompleteDefault" Type="System.Boolean" Scope="Application">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="scoreCardTemplateDefault" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">HugKissScoreCard.doc</Value>
+    </Setting>
+    <Setting Name="inputFileDefault" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">SampleSession.csv</Value>
+    </Setting>
+    <Setting Name="workingDirectoryPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="savedFileDefaultFormat" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Meet_{0}_SavedFile.csv</Value>
+    </Setting>
+    <Setting Name="savedFileDateFormat" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">yyyyMMdd</Value>
+    </Setting>
+    <Setting Name="daysBackToCheckForSavedFile" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">3</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -45,6 +45,10 @@
             this.label5 = new System.Windows.Forms.Label();
             this.version = new System.Windows.Forms.Label();
             this.includeIncomplete = new System.Windows.Forms.CheckBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.browseSavedFile = new System.Windows.Forms.Button();
+            this.savedFilePath = new System.Windows.Forms.ComboBox();
+            this.defaults = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // inputFilePath
@@ -52,15 +56,15 @@
             this.inputFilePath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.inputFilePath.FormattingEnabled = true;
-            this.inputFilePath.Location = new System.Drawing.Point(27, 31);
+            this.inputFilePath.Location = new System.Drawing.Point(27, 47);
             this.inputFilePath.Name = "inputFilePath";
-            this.inputFilePath.Size = new System.Drawing.Size(560, 21);
+            this.inputFilePath.Size = new System.Drawing.Size(540, 21);
             this.inputFilePath.TabIndex = 0;
             // 
             // browseInput
             // 
             this.browseInput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.browseInput.Location = new System.Drawing.Point(593, 29);
+            this.browseInput.Location = new System.Drawing.Point(573, 45);
             this.browseInput.Name = "browseInput";
             this.browseInput.Size = new System.Drawing.Size(75, 23);
             this.browseInput.TabIndex = 1;
@@ -70,10 +74,9 @@
             // 
             // merge
             // 
-            this.merge.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.merge.Location = new System.Drawing.Point(593, 256);
+            this.merge.Location = new System.Drawing.Point(186, 211);
             this.merge.Name = "merge";
-            this.merge.Size = new System.Drawing.Size(75, 23);
+            this.merge.Size = new System.Drawing.Size(244, 36);
             this.merge.TabIndex = 2;
             this.merge.Text = "Merge";
             this.merge.UseVisualStyleBackColor = true;
@@ -82,7 +85,7 @@
             // browseTemplate
             // 
             this.browseTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.browseTemplate.Location = new System.Drawing.Point(593, 92);
+            this.browseTemplate.Location = new System.Drawing.Point(573, 294);
             this.browseTemplate.Name = "browseTemplate";
             this.browseTemplate.Size = new System.Drawing.Size(75, 23);
             this.browseTemplate.TabIndex = 4;
@@ -95,15 +98,15 @@
             this.templateFilePath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.templateFilePath.FormattingEnabled = true;
-            this.templateFilePath.Location = new System.Drawing.Point(27, 94);
+            this.templateFilePath.Location = new System.Drawing.Point(27, 296);
             this.templateFilePath.Name = "templateFilePath";
-            this.templateFilePath.Size = new System.Drawing.Size(560, 21);
+            this.templateFilePath.Size = new System.Drawing.Size(540, 21);
             this.templateFilePath.TabIndex = 3;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(27, 12);
+            this.label1.Location = new System.Drawing.Point(27, 28);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(120, 13);
             this.label1.TabIndex = 5;
@@ -112,7 +115,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(27, 75);
+            this.label2.Location = new System.Drawing.Point(27, 277);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(132, 13);
             this.label2.TabIndex = 6;
@@ -203,18 +206,62 @@
             // 
             // includeIncomplete
             // 
-            this.includeIncomplete.Location = new System.Drawing.Point(30, 317);
+            this.includeIncomplete.Location = new System.Drawing.Point(27, 323);
             this.includeIncomplete.Name = "includeIncomplete";
             this.includeIncomplete.Size = new System.Drawing.Size(129, 24);
             this.includeIncomplete.TabIndex = 14;
             this.includeIncomplete.Text = "Include Incomplete?";
             this.includeIncomplete.UseVisualStyleBackColor = true;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(27, 81);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(99, 13);
+            this.label6.TabIndex = 17;
+            this.label6.Text = "Saved File for Meet";
+            // 
+            // browseSavedFile
+            // 
+            this.browseSavedFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.browseSavedFile.Location = new System.Drawing.Point(573, 98);
+            this.browseSavedFile.Name = "browseSavedFile";
+            this.browseSavedFile.Size = new System.Drawing.Size(75, 23);
+            this.browseSavedFile.TabIndex = 16;
+            this.browseSavedFile.Text = "browse ...";
+            this.browseSavedFile.UseVisualStyleBackColor = true;
+            // 
+            // savedFilePath
+            // 
+            this.savedFilePath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.savedFilePath.FormattingEnabled = true;
+            this.savedFilePath.Location = new System.Drawing.Point(27, 100);
+            this.savedFilePath.Name = "savedFilePath";
+            this.savedFilePath.Size = new System.Drawing.Size(540, 21);
+            this.savedFilePath.TabIndex = 15;
+            // 
+            // defaults
+            // 
+            this.defaults.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.defaults.Location = new System.Drawing.Point(574, 12);
+            this.defaults.Name = "defaults";
+            this.defaults.Size = new System.Drawing.Size(75, 23);
+            this.defaults.TabIndex = 18;
+            this.defaults.Text = "Defaults";
+            this.defaults.UseVisualStyleBackColor = true;
+            this.defaults.Click += new System.EventHandler(this.defaults_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(680, 381);
+            this.ClientSize = new System.Drawing.Size(660, 381);
+            this.Controls.Add(this.defaults);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.browseSavedFile);
+            this.Controls.Add(this.savedFilePath);
             this.Controls.Add(this.includeIncomplete);
             this.Controls.Add(this.version);
             this.Controls.Add(this.proScoreNumberFilter);
@@ -257,6 +304,10 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label version;
         private System.Windows.Forms.CheckBox includeIncomplete;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button browseSavedFile;
+        private System.Windows.Forms.ComboBox savedFilePath;
+        private System.Windows.Forms.Button defaults;
     }
 }
 

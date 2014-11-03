@@ -4,9 +4,10 @@ open System
 
 type Gymnasts = FSharp.Data.CsvProvider<"gymnasts_sample.csv">
 
-type FileFilter(inputFile: string, outputFile: string, includeScratched: bool, includeNotDone: bool) = 
+type FileFilter(inputFile: string, outputFile: string, exclusionFile: string, includeScratched: bool, includeNotDone: bool) = 
     member this.InputFile = inputFile
     member this.OutputFile = outputFile
+    member this.ExclusionFile = exclusionFile
     member this.IncludeScratched = includeScratched
     member this.IncludeNotDone = includeNotDone
 
@@ -26,8 +27,20 @@ type FileFilter(inputFile: string, outputFile: string, includeScratched: bool, i
 
         let isEmpty = filtered.Rows |> Seq.isEmpty
         if not (isEmpty) then
-            filtered.Save(this.OutputFile)
-            true
+            let filterExclusions = not (String.IsNullOrEmpty(exclusionFile))
+            let excludedGymnasts = if (filterExclusions) then Gymnasts.Load(exclusionFile) else null
+
+            let savableSet = 
+                if not (filterExclusions) then filtered
+                else filtered.Filter( fun g ->
+                    not (excludedGymnasts.Rows |> Seq.exists(fun eg -> eg.Num = g.Num))
+                )
+            
+            let isSavableEmpty = savableSet.Rows |> Seq.isEmpty
+            if not (isSavableEmpty) then
+                savableSet.Save(this.OutputFile)
+                true
+            else false
         else false
 
     member this.FilterForUSAG usag : bool = 
