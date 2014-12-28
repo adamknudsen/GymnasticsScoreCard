@@ -49,6 +49,7 @@
             this.browseSavedFile = new System.Windows.Forms.Button();
             this.savedFilePath = new System.Windows.Forms.ComboBox();
             this.defaults = new System.Windows.Forms.Button();
+            this.excludeAlreadySaved = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // inputFilePath
@@ -253,11 +254,23 @@
             this.defaults.UseVisualStyleBackColor = true;
             this.defaults.Click += new System.EventHandler(this.defaults_Click);
             // 
+            // excludeAlreadySaved
+            // 
+            this.excludeAlreadySaved.Checked = true;
+            this.excludeAlreadySaved.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.excludeAlreadySaved.Location = new System.Drawing.Point(162, 323);
+            this.excludeAlreadySaved.Name = "excludeAlreadySaved";
+            this.excludeAlreadySaved.Size = new System.Drawing.Size(165, 24);
+            this.excludeAlreadySaved.TabIndex = 19;
+            this.excludeAlreadySaved.Text = "Exclude If Already Saved?";
+            this.excludeAlreadySaved.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(660, 381);
+            this.Controls.Add(this.excludeAlreadySaved);
             this.Controls.Add(this.defaults);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.browseSavedFile);
@@ -308,6 +321,7 @@
         private System.Windows.Forms.Button browseSavedFile;
         private System.Windows.Forms.ComboBox savedFilePath;
         private System.Windows.Forms.Button defaults;
+        private System.Windows.Forms.CheckBox excludeAlreadySaved;
     }
 }
 
