@@ -30,6 +30,15 @@ namespace GymnasticsScoreCardPrinter
 			}
 		}
 
+		private void browseSavedFile_Click(object sender, EventArgs e)
+		{
+			var result = saveFileDialog.ShowDialog();
+			if (result == DialogResult.OK)
+			{
+				savedFilePath.Text = saveFileDialog.FileName;
+			}
+		}
+
 		private void merge_Click(object sender, EventArgs e)
 		{
 			try
@@ -194,5 +203,6 @@ namespace GymnasticsScoreCardPrinter
 			return false;
 			
 		}
+
 	}
 }

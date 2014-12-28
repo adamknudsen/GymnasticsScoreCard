@@ -50,6 +50,7 @@
             this.savedFilePath = new System.Windows.Forms.ComboBox();
             this.defaults = new System.Windows.Forms.Button();
             this.excludeAlreadySaved = new System.Windows.Forms.CheckBox();
+            this.saveFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
             // 
             // inputFilePath
@@ -232,6 +233,7 @@
             this.browseSavedFile.TabIndex = 16;
             this.browseSavedFile.Text = "browse ...";
             this.browseSavedFile.UseVisualStyleBackColor = true;
+            this.browseSavedFile.Click += new System.EventHandler(this.browseSavedFile_Click);
             // 
             // savedFilePath
             // 
@@ -322,6 +324,7 @@
         private System.Windows.Forms.ComboBox savedFilePath;
         private System.Windows.Forms.Button defaults;
         private System.Windows.Forms.CheckBox excludeAlreadySaved;
+        private System.Windows.Forms.OpenFileDialog saveFileDialog;
     }
 }
 
