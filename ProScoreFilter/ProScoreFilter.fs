@@ -2,7 +2,7 @@
 
 open System
 
-type Gymnasts = FSharp.Data.CsvProvider<"gymnasts_sample.csv">
+type Gymnasts = FSharp.Data.CsvProvider<"gymnasts_sample.csv",Schema="E1Adj=string,E2Adj=string,E3Adj=string,E4Adj=string">
 
 type FileFilter(inputFile: string, outputFile: string, exclusionFile: string, includeScratched: bool, includeNotDone: bool) = 
     member this.InputFile = inputFile
