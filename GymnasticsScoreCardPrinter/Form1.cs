@@ -77,8 +77,13 @@ namespace GymnasticsScoreCardPrinter
 		private string FilterInput()
 		{
 			string uniqueFileName = "FilteredSession_" + DateTime.Now.ToString("yyyyMMddhhmmss") + ".csv";
+			string inputCopyFileName = "InputTo" + uniqueFileName;
 			string filteredInput = Path.Combine(Environment.CurrentDirectory, uniqueFileName);
+			string copyOfInput = Path.Combine(Environment.CurrentDirectory, inputCopyFileName);
+			File.Copy(inputFilePath.Text,copyOfInput); //for research in case of issues
+			
 			string exclusionFilePath = (excludeAlreadySaved.Checked && File.Exists(savedFilePath.Text)) ? savedFilePath.Text : string.Empty;
+
 			var proScoreFilter = new ProScoreFilter.FileFilter(inputFilePath.Text, filteredInput, exclusionFilePath, Properties.Settings.Default.IncludeScratched, includeIncomplete.Checked);
 
 			if(!string.IsNullOrWhiteSpace(sessionFilter.Text) && proScoreFilter.FilterForSession(sessionFilter.Text))
